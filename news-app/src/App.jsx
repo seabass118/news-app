@@ -1,15 +1,13 @@
-import './App.css'
-import Header from './components/Header'
-
+import "./App.css";
+import Header from "./components/Header/Header";
+import MapArea from "./components/MapArea/MapArea";
 function App() {
-
-
-  return (
-    <>
-      <Header />
-      News app
-    </>
-  )
+	return (
+		<>
+			<Header />
+			<MapArea />
+		</>
+	);
 }
 
-export default App
+export default App;
