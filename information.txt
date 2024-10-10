@@ -2,24 +2,24 @@ NEWS APP PLAN
 
 // Development
 
-- Client Side or Server Side ?
-- Framework or no framework ?
-- Auth or No Auth ?
-- Local Database or Database platform ? 
+- Client Side or Server Side ? Client 
+- Framework or no framework ? YE
+- Auth or No Auth ? NO
+- Local Database or Database platform ? NO
 
 // Deployment and testing
 
-- Build for scalabilty ?
-- Utilise testing ?
-- Deploy in live enviroment ?
+- Build for scalabilty ? NO
+- Utilise testing ? YES
+- Deploy in live enviroment ? NO
 - Serverless or VPS ?
 
 // Api
 
-- News service API ?
-- Cron jobs ?
+- News service API ? newsapi.org
+- Cron jobs ? NO
 - Request structure ?
-- Call from client or server ?
+- Call from client or server ? Client
 - Cost structure ? (likely not needed)
 
 // Version Control
