@@ -1,0 +1,29 @@
+NEWS APP PLAN
+
+// Development
+
+- Client Side or Server Side ?
+- Framework or no framework ?
+- Auth or No Auth ?
+- Local Database or Database platform ? 
+
+// Deployment and testing
+
+- Build for scalabilty ?
+- Utilise testing ?
+- Deploy in live enviroment ?
+- Serverless or VPS ?
+
+// Api
+
+- News service API ?
+- Cron jobs ?
+- Request structure ?
+- Call from client or server ?
+- Cost structure ? (likely not needed)
+
+// Version Control
+
+- Use git ? (yes)
+- What control pattern should we use ? (Commit, Request, Merge)
+- What branch patterns should we use ? (Dev + Release only)
