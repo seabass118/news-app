@@ -13,27 +13,28 @@ const NewsPanel = ({ activeCountry, setActiveCountry }) => {
     // Listen for activeCountry changes and add a loading state when changed
 
 
-    useEffect(() => {
-        axios
+    const NewsPanel = ({ activeCountry, setActiveCountry }) => {
+        // Fetch news data from API using activeCountry prop as query
+        // Listen for activeCountry changes and add a loading state when changed
+      
+        useEffect(() => {
+          axios
             .get(
-                `https://newsapi.org/v2/top-headlines?country=us&q=${activeCountry}&apiKey=${import.meta.env.VITE_NEWS_KEY}`
+              `https://newsapi.org/v2/top-headlines?country=${activeCountry}&apiKey=179516485a454205abbc74f648bba279`
             )
             .then(function (response) {
-                // handle success
-                console.log(response)
-
-
-
-
+              // handle success
+              console.log("News data:", response.data);
+              // You can now pass response.data to NewsPanelCard component
             })
             .catch(function (error) {
-                // handle error
-                console.log(error);
+              // handle error
+              console.log(error);
             })
             .finally(function () {
-                // always executed
+              // always executed
             });
-    }, [activeCountry])
+        }, [activeCountry]);
 
     return (
         <div className="rounded animate-in slide-in-from-left-48 absolute z-10 p-2  left-5 top-[100px] max-w-[40%] max-h-[calc(100vh-120px)] bg-white">
