@@ -1,5 +1,6 @@
 import { Map, Header, NewsPanel } from "./components";
 import { useState } from "react";
+import "./App.css";
 
 
 
