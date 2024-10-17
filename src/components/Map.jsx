@@ -3,9 +3,8 @@ import mapboxgl from "mapbox-gl";
 import axios from "axios";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-const Map = ({ setShowPanel, setActiveCountry }) => {
+const Map = ({ setShowPanel, setActiveCountry, setActiveCountryCode }) => {
 	const [coords, setCoords] = useState({});
-	const [country, setCountry] = useState("");
 
 	const mapRef = useRef();
 	const mapContainerRef = useRef();
@@ -16,6 +15,7 @@ const Map = ({ setShowPanel, setActiveCountry }) => {
 				`https://api.mapbox.com/search/geocode/v6/reverse?longitude=${object.lng}&latitude=${object.lat}.json?types=place&access_token=pk.eyJ1Ijoic2ViLWJsYWNrbGV5IiwiYSI6ImNtMHptZTZsajA2ZWMybHNjZXBicHUyZmsifQ.IE-v0h0e-BAN9B1S8hHyMw`
 			)
 			.then(function (response) {
+                console.log(response);
 				// handle success
 				if (response.data.features.length) {
                     setShowPanel(true);
@@ -23,6 +23,7 @@ const Map = ({ setShowPanel, setActiveCountry }) => {
 						response.data.features[0].properties.context.country
 							.name
 					);
+                    setActiveCountryCode(response.data.features[0].properties.context.country.country_code)
 				}
 			})
 			.catch(function (error) {
@@ -43,6 +44,7 @@ const Map = ({ setShowPanel, setActiveCountry }) => {
 		});
 
 		mapRef.current.on("click", (e) => {
+            
 			setCoords(e.lngLat);
 			reverseGeo(e.lngLat);
 		});
