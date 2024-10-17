@@ -3,21 +3,12 @@ import mapboxgl from "mapbox-gl";
 import axios from "axios";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-const Map = () => {
+const Map = ({ setShowPanel, setActiveCountry }) => {
 	const [coords, setCoords] = useState({});
 	const [country, setCountry] = useState("");
 
 	const mapRef = useRef();
 	const mapContainerRef = useRef();
-
-
-	//state update
-	//fetch news api - AXIOS
-	//Once response = new state
-	 
-	useEffect(() => {
-
-	}, [country])
 
 	const reverseGeo = async (object) => {
 		axios
@@ -27,7 +18,8 @@ const Map = () => {
 			.then(function (response) {
 				// handle success
 				if (response.data.features.length) {
-					setCountry(
+                    setShowPanel(true);
+					setActiveCountry(
 						response.data.features[0].properties.context.country
 							.name
 					);
@@ -62,22 +54,19 @@ const Map = () => {
 
 	return (
 		<>
-			<div
-				id="map-container"
-				ref={mapContainerRef}
-			
-			>
-				<div className="absolute text-2xl text-white z-10">
+			<div id="map-container" ref={mapContainerRef}>
+				{/* <div className="relative text-2xl text-white z-10">
 					lat: {coords.lat}
 				</div>
-				<div className="absolute text-2xl text-white z-10">
-					long: {coords.lng}
+				<div className="relative text-2xl text-white z-10">
+					long: {coords.lat}
 				</div>
-				<div className="absolute z-10 text-red-400 text-3xl">
+				<div className="relative z-10 text-red-400 text-3xl">
 					clicked country: {country}
-				</div>
+				</div> */}
 			</div>
 		</>
 	);
-}	
+};
+
 export default Map;
