@@ -1,4 +1,5 @@
 import Map from "./Map";
-import Header from "./Header/Header";
+import Header from "./Header";
+import NewsPanel from "./NewsPanel";
 
-export { Map, Header }
+export { Map, Header, NewsPanel }

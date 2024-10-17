@@ -7,7 +7,7 @@
   }
   
   #map-container {
-    height: 100%;
+    height: calc(100% - 75px);
     width: 100%;
     /* temporarily set the background color so we can tell where the map container is positioned */
     background-color: lightgrey;
