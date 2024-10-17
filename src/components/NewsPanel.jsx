@@ -2,29 +2,32 @@ import { FaNewspaper } from "react-icons/fa";
 import NewsPanelCard from "./NewsPanelCard";
 import { IoClose } from "react-icons/io5";
 import { FaGlobeAmericas } from "react-icons/fa";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
-const NewsPanel = ({ activeCountry, setActiveCountry }) => {
+const NewsPanel = ({ activeCountry, activeCountryCode, setActiveCountry }) => {
 
+    const [news, setNews] = useState([]);
     // Fetch news data from api in this component
     // use activeCountry prop as query
     // pass data as props into NewsPanelCard component and render data
     // Listen for activeCountry changes and add a loading state when changed
 
+    useEffect(() => {
+        console.log(news);
+    }, [news])
 
     useEffect(() => {
         axios
             .get(
-                `https://newsapi.org/v2/top-headlines?country=us&q=${activeCountry}&apiKey=${import.meta.env.VITE_NEWS_KEY}`
+                `https://newsapi.org/v2/everything?q=${activeCountry.toLowerCase()}&pageSize=5&apiKey=${import.meta.env.VITE_NEWS_KEY}`
             )
             .then(function (response) {
                 // handle success
                 console.log(response)
-
-
-
-
+                if(response.data.articles.length) {
+                    setNews(response.data.articles);
+                }
             })
             .catch(function (error) {
                 // handle error
@@ -33,7 +36,7 @@ const NewsPanel = ({ activeCountry, setActiveCountry }) => {
             .finally(function () {
                 // always executed
             });
-    }, [activeCountry])
+    }, [activeCountryCode])
 
     return (
         <div className="rounded animate-in slide-in-from-left-48 absolute z-10 p-2  left-5 top-[100px] max-w-[40%] max-h-[calc(100vh-120px)] bg-white">
@@ -44,11 +47,22 @@ const NewsPanel = ({ activeCountry, setActiveCountry }) => {
 
 
             <div className="overflow-auto  bg-black max-h-[calc(100vh-200px)]">
-                {[...Array(5)].map((news, index) => {
-                    return (
-                        <NewsPanelCard />
-                    )
-                })}
+                {news.length && (
+                    <>
+                        {news.map((news_item, index) => {
+                            return (
+                                <NewsPanelCard 
+                                    author={news_item.author}
+                                    content={news_item.content}
+                                    description={news_item.description}
+                                    source={news_item.source.name}
+                                    title={news_item.title}
+                                    imageUrl={news_item.urlToImage}
+                                />
+                            )
+                        })}
+                    </>
+                )}
             </div>
         </div>
     );
